@@ -14,6 +14,14 @@ type LocalNewError interface {
 	Error() string
 }
 
+type CustomErrorFajri struct {
+	ErrorMessage string
+}
+
+func (cst *CustomErrorFajri) Error() string {
+	return cst.ErrorMessage
+}
+
 func main() {
 	var abc LocalNewError = CustomError{ErrorMessage: "validation Error"}
 	var z error = abc
@@ -22,4 +30,11 @@ func main() {
 	var abd error = CustomError{ErrorMessage: "validation Error for Username"}
 	fmt.Println(abd)
 
+	//
+	var cstErr error = &CustomErrorFajri{ErrorMessage: "Apapun Itu"}
+	fmt.Println(cstErr)
+
+	if cstErr != nil {
+		panic("Error Bro")
+	}
 }
