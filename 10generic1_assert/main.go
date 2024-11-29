@@ -4,7 +4,10 @@ import (
 	"10generic1_assert/customconstraint"
 	"fmt"
 	"reflect"
+<<<<<<< HEAD
 	"strings"
+=======
+>>>>>>> 9749b16 (add more example type assertion)
 )
 
 type Employee struct {
@@ -54,6 +57,7 @@ func serializer(a interface{}) {
 		fmt.Println("didnt defined")
 	}
 }
+<<<<<<< HEAD
 func defSerializerAdd[T interface{}](a, b T) T {
 
 	var tmp interface{}
@@ -72,6 +76,8 @@ func defSerializerAdd[T interface{}](a, b T) T {
 func defAdd[T customconstraint.MyUnion](a, b T) T {
 	return a + b
 }
+=======
+>>>>>>> 9749b16 (add more example type assertion)
 
 func main() {
 
