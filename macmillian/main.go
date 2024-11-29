@@ -78,11 +78,4 @@ func main() {
 
 	fmt.Println(benefits_teamcenter)
 
-	type Employee struct {
-		firstname string `json:"Firstname"`
-		lastname  string `json:"Lastname"`
-	}
-
-	var emp2 Employee
-
 }
