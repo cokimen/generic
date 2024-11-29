@@ -1,8 +1,10 @@
 package main
 
 import (
+	"10generic1_assert/customconstraint"
 	"fmt"
 	"reflect"
+	"strings"
 )
 
 type Employee struct {
@@ -51,6 +53,24 @@ func serializer(a interface{}) {
 	default:
 		fmt.Println("didnt defined")
 	}
+}
+func defSerializerAdd[T interface{}](a, b T) T {
+
+	var tmp interface{}
+
+	switch ((interface{})(a)).(type) {
+	case string:
+		tmp = strings.Join([]string{((interface{})(a)).(string), ((interface{})(b)).(string)}, " ")
+	case int16:
+		tmp = ((interface{})(a)).(int16) + ((interface{})(b)).(int16)
+	default:
+		fmt.Println("unknown")
+	}
+	return tmp.(T)
+}
+
+func defAdd[T customconstraint.MyUnion](a, b T) T {
+	return a + b
 }
 
 func main() {
@@ -104,4 +124,21 @@ func main() {
 	serializer("Cokimen")
 	serializer(int32(900))
 	serializer(float32(90.99))
+
+	fmt.Println("---------------------------------------")
+	var def1 string = defSerializerAdd[string]("ssss", "asa")
+	var def2 int16 = defSerializerAdd[int16](10, 12)
+	var def3 string = defSerializerAdd("coki", "brother")
+
+	fmt.Println(def1)
+	fmt.Println(def2)
+	fmt.Println(def3)
+
+	fmt.Println("---------------------------------------")
+
+	var defadd1 int = defAdd(90, 89)
+	fmt.Println(defadd1)
+
+	var defadd2 string = defAdd("coki", "  erz")
+	fmt.Println(defadd2)
 }
